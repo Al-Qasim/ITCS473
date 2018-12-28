@@ -1,0 +1,61 @@
+function correctTime(num)
+{
+	for(var i=0; i<num; i++)
+	{
+		var starttime=document.getElementById('starting'+i).innerHTML;
+		var endtime=document.getElementById('ending'+i).innerHTML;
+		document.getElementById('starting'+i).innerHTML=starttime.substring(0, 8);
+		document.getElementById('ending'+i).innerHTML=endtime.substring(0, 8);
+	}
+}
+
+//---------------------------------------------------------------
+
+function reserveSeats() {
+			
+	var selectedList = getSelectedList('Reserve Seats');
+			
+		if (selectedList) {
+			if (confirm('Do you want to reserve selected seat/s ' + selectedList + '?')) {
+				document.forms[0].oldStatusCode.value=0;
+				document.forms[0].newStatusCode.value=1;
+				isSelected();
+				//document.forms[0].action='bookseats.php';
+				//document.forms[0].submit();
+			 } //else {
+				// clearSelection();
+				// }
+			}
+		}
+//--------------------------------------------------------------------------------
+function checkSeat(num){
+	
+$('#Seat'+num).on('input', function () {
+
+    if ($('#Seat'+num).is(':checked')) {
+        
+		//document.getElementById("Seat"+num).checked = false;
+		//$("#Seat"+num).click();
+		document.getElementById('SeatDiv'+num).className='seatSelected';
+		
+    } else {
+
+		//document.getElementById("Seat"+num).checked = true;
+		//$("#Seat"+num).click();
+		//document.getElementById("SeatDiv"+num).style = "background-color: lightgreen;";
+		document.getElementById('SeatDiv'+num).className='seat';
+    }
+});}
+
+//--------------------------------------------------------------------------------------
+function validateUN()
+{
+	var unRegEx="/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,25}/"
+	var uname= document.getElementById('UN').innerHTML;
+	if(unRegEx.test(uname))
+	{
+		document.getElementById('validInput').className='important';
+	}
+	else
+		document.getElementById('validInput').className='errormsg';
+}
